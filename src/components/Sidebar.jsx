@@ -4,9 +4,13 @@ import { FaInstagram, FaEtsy } from 'react-icons/fa'
 const Sidebar = () => {
   return (
     <Wrapper className='sidebar'>
-      <FaEtsy />
+      <a href='https://www.etsy.com/shop/ASA7URSHOP' target='_blank'>
+        <FaEtsy className='logo' />
+      </a>
       <div className='title'>ASA7UR</div>
-      <FaInstagram />
+      <a href='https://www.instagram.com/asa7ur/' target='_blank'>
+        <FaInstagram className='logo' />
+      </a>
     </Wrapper>
   )
 }
@@ -27,11 +31,15 @@ const Wrapper = styled.div`
   opacity: 0;
   z-index: 99;
 
-  .title{
+  .title {
     transform: rotate(-90deg);
   }
 
-  svg{
+  a{
+    color: white;
+  }
+
+  svg {
     font-size: 1.5rem;
   }
 `
