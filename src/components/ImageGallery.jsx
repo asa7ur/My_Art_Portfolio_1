@@ -32,6 +32,30 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .col-1 {
+    animation: fadeIn 500ms ease-in forwards;
+  }
+
+  .col-2 {
+    animation: fadeIn 500ms ease-in forwards;
+    animation-delay: 200ms;
+  }
+
+  .col-3 {
+    animation: fadeIn 500ms ease-in-out forwards;
+    animation-delay: 400ms;
   }
 
   img {
