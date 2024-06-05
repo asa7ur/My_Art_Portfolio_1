@@ -3,7 +3,7 @@ import Sidebar from './Sidebar'
 import img_1 from '../assets/img_1.jpg'
 import img_2 from '../assets/img_2.jpg'
 
-const ContentSection = () => {
+const ContentSection = ({ onShowOverlay }) => {
   return (
     <Wrapper>
       <Sidebar />
@@ -19,10 +19,10 @@ const ContentSection = () => {
           <div className='line-2'>
             <h1 className='num'>/96</h1>
             <h1>ASATRYAN</h1>
-            <button className='loop'>
+            <button className='loop' onClick={onShowOverlay}>
               <span>COLLECTION</span>
             </button>
-            <button className='loop loop2'>
+            <button className='loop loop2' onClick={onShowOverlay}>
               <span>COLLECTION</span>
             </button>
           </div>
