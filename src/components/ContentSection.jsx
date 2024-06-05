@@ -1,16 +1,18 @@
 import styled from 'styled-components'
+import Sidebar from './Sidebar'
 import img_1 from '../assets/img_1.jpg'
 import img_2 from '../assets/img_2.jpg'
 
 const ContentSection = () => {
   return (
     <Wrapper>
+      <Sidebar />
       <div className='wrapper'>
         <div className='left'>
           <div className='line-1'>
             <h1>GARIK</h1>
             <div className='copyright'>
-              ASA7UR 2024© <br /> MADE WITH PASSION
+              ASA7UR© {new Date().getFullYear()} <br /> MADE WITH PASSION
             </div>
           </div>
           <img src={img_1} alt='John Wick' />

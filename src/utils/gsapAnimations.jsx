@@ -46,7 +46,7 @@ export const setupGSAPAnimations = (containerRef) => {
         scrub: 3,
       },
     })
-    
+
     .to('.col-3', {
       y: -250,
       ease: 'none',
@@ -56,6 +56,16 @@ export const setupGSAPAnimations = (containerRef) => {
         start: 'top center',
         end: '+=3300',
         scrub: 3,
+      },
+    })
+
+    .to('.sidebar', {
+      x: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: '.sidebar',
+        start: 'center+=3000 center',
+        scrub: 4,
       },
     })
 }
