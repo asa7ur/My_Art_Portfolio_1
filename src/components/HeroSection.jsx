@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import ImageGallery from './ImageGallery'
+import { images } from '../constants'
 
 const HeroSection = () => {
   return (
@@ -8,7 +9,7 @@ const HeroSection = () => {
         <h1>ASA7UR</h1>
       </div>
       <div className='right'>
-        <ImageGallery/>
+        <ImageGallery images={images} />
       </div>
     </Wrapper>
   )
