@@ -4,7 +4,7 @@ import { images } from '../constants'
 
 const HeroSection = () => {
   return (
-    <Wrapper className='heroSection'>
+    <Wrapper>
       <div className='left'>
         <h1>ASA7UR</h1>
       </div>
