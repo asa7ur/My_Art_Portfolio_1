@@ -1,16 +1,6 @@
-import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { setupGSAPAnimations } from '../utils/gsapAnimations'
 
 const ImageGallery = ({ images }) => {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    if (images.length > 0) {
-      setupGSAPAnimations(containerRef)
-    }
-  }, [images])
-
   const groupedImages = images.reduce((acc, image, index) => {
     const colIndex = Math.floor(index / 6)
     if (!acc[colIndex]) acc[colIndex] = []
