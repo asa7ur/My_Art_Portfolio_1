@@ -56,6 +56,30 @@ const Wrapper = styled.div`
   .col-3 {
     animation: fadeIn 500ms ease-in-out forwards;
     animation-delay: 400ms;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .col-1 {
+    animation: fadeIn 500ms ease-in forwards;
+  }
+
+  .col-2 {
+    animation: fadeIn 500ms ease-in forwards;
+    animation-delay: 250ms;
+  }
+
+  .col-3 {
+    animation: fadeIn 500ms ease-in-out forwards;
+    animation-delay: 500ms;
   }
 
   img {
