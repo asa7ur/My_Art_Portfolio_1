@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { FaArrowDown } from 'react-icons/fa'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const ProductsSection = ({ isVisible, onClose }) => {
@@ -30,9 +30,9 @@ const ProductsSection = ({ isVisible, onClose }) => {
 
   const calculateColumns = () => {
     const screenWidth = window.innerWidth
-    if (screenWidth >= 1024) return 5
-    if (screenWidth >= 768) return 4
-    return 3
+    if (screenWidth >= 1024) return 4
+    if (screenWidth >= 768) return 3
+    return 2
   }
 
   const columns = chunkArray(
@@ -59,7 +59,7 @@ const ProductsSection = ({ isVisible, onClose }) => {
       </div>
       <div className='content'>
         {columns.map((column, index) => (
-          <div className={`col-${index + 1}`} key={index}>
+          <div className='col' key={index}>
             {column.map((image) => (
               <img src={image.image} alt={image.name} key={image.id} />
             ))}
@@ -136,11 +136,7 @@ const Wrapper = styled.div`
     overflow-y: auto;
   }
 
-  .col-1,
-  .col-2,
-  .col-3,
-  .col-4,
-  .col-5 {
+  .col{
     flex: 1;
     margin: 0 10px;
   }
