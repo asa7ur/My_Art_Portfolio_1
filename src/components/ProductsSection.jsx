@@ -1,31 +1,50 @@
 import styled from 'styled-components'
 import { FaArrowDown } from 'react-icons/fa'
-import { images } from '../constants'
+import { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 
-const ProductsSection = ({ isVisible, onClose }) => (
-  <Wrapper className={isVisible ? 'visible' : ''}>
-    <div className='navbar'>
-      <div className='nav-container'>
-        <div className='search'>
-          <input
-            type='text'
-            name='text'
-            placeholder='Search'
-            className='search-input'
-          />
+const ProductsSection = ({ isVisible, onClose }) => {
+  const [images, setImages] = useState([])
+
+  const fecthImages = async () => {
+    try {
+      const response = await axios('/.netlify/functions/images')
+      const fetchedImages = response.data
+      setImages(fetchedImages)
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+
+  useEffect(() => {
+    fecthImages()
+  }, [])
+
+  return (
+    <Wrapper className={isVisible ? 'visible' : ''}>
+      <div className='navbar'>
+        <div className='nav-container'>
+          <div className='search'>
+            <input
+              type='text'
+              name='text'
+              placeholder='Search'
+              className='search-input'
+            />
+          </div>
+          <button className='close-button' onClick={onClose}>
+            <FaArrowDown />
+          </button>
         </div>
-        <button className='close-button' onClick={onClose}>
-          <FaArrowDown />
-        </button>
       </div>
-    </div>
-    <div className='content'>
-      {images.map((image) => (
-        <img src={image.image} alt={image.name} key={image.id} />
-      ))}
-    </div>
-  </Wrapper>
-)
+      <div className='content'>
+        {images.map((image) => (
+          <img src={image.image} alt={image.name} key={image.id} />
+        ))}
+      </div>
+    </Wrapper>
+  )
+}
 
 export default ProductsSection
 
