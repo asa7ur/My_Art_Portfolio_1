@@ -20,6 +20,26 @@ const ProductsSection = ({ isVisible, onClose }) => {
     fecthImages()
   }, [])
 
+  const chunkArray = (array, chunkSize) => {
+    const result = []
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize))
+    }
+    return result
+  }
+
+  const calculateColumns = () => {
+    const screenWidth = window.innerWidth
+    if (screenWidth >= 1024) return 5
+    if (screenWidth >= 768) return 4
+    return 3
+  }
+
+  const columns = chunkArray(
+    images,
+    Math.ceil(images.length / calculateColumns())
+  )
+
   return (
     <Wrapper className={isVisible ? 'visible' : ''}>
       <div className='navbar'>
@@ -38,8 +58,12 @@ const ProductsSection = ({ isVisible, onClose }) => {
         </div>
       </div>
       <div className='content'>
-        {images.map((image) => (
-          <img src={image.image} alt={image.name} key={image.id} />
+        {columns.map((column, index) => (
+          <div className={`col-${index + 1}`} key={index}>
+            {column.map((image) => (
+              <img src={image.image} alt={image.name} key={image.id} />
+            ))}
+          </div>
         ))}
       </div>
     </Wrapper>
@@ -105,21 +129,25 @@ const Wrapper = styled.div`
   }
 
   .content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
     margin-top: 80px;
-    width: 100%;
-    height: 100%;
+    padding: 0 2rem;
     overflow-y: auto;
   }
 
-  .content img {
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5 {
+    flex: 1;
+    margin: 0 10px;
+  }
+
+  img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    border: 1px solid var(--grey-400);
-    border-radius: 4px;
+    display: block;
+    margin-bottom: 10px;
   }
 `
