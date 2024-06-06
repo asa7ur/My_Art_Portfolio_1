@@ -11,13 +11,14 @@ exports.handler = async function () {
 
     const images = response.records.map((images) => {
       const { id, fields } = images
-      const { name, image, link } = fields
+      const { name, image, store_link, ig_link } = fields
       const imageUrl = image[0].thumbnails.large.url
       return {
         id,
         name,
         image: imageUrl,
-        link
+        store_link,
+        ig_link
       }
     })
 

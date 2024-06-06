@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { FaInstagram, FaEtsy } from 'react-icons/fa'
+import { FaInstagram, FaShoppingCart } from 'react-icons/fa'
 
 const Sidebar = () => {
   return (
     <Wrapper className='sidebar'>
       <a href='https://www.etsy.com/shop/ASA7URSHOP' target='_blank'>
-        <FaEtsy className='logo' />
+        <FaShoppingCart className='logo' />
       </a>
       <div className='title'>ASA7UR</div>
       <a href='https://www.instagram.com/asa7ur/' target='_blank'>

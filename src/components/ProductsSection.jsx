@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowDown, FaInstagram, FaShoppingCart } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
@@ -61,7 +61,20 @@ const ProductsSection = ({ isVisible, onClose }) => {
         {columns.map((column, index) => (
           <div className='col' key={index}>
             {column.map((image) => (
-              <img src={image.image} alt={image.name} key={image.id} />
+              <div className='img-container' key={image.id}>
+                <img src={image.image} alt={image.name} />
+                <div className='img-overlay'>
+                  <a
+                    href={image.store_link}
+                    target='_blank'
+                  >
+                    <FaShoppingCart className='logo' />
+                  </a>
+                  <a href={image.ig_link} target='_blank'>
+                    <FaInstagram className='logo' />
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
         ))}
@@ -136,14 +149,46 @@ const Wrapper = styled.div`
     overflow-y: auto;
   }
 
-  .col{
+  .col {
     flex: 1;
     margin: 0 10px;
   }
 
-  img {
+  .img-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-container > img {
     width: 100%;
     display: block;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    transition: all 0.5s ease;
+  }
+
+  .img-container > .img-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all 1s ease;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .img-container > .img-overlay > a{
+    color: white;
+    font-size: 3rem;
+  }
+
+  .img-container:hover {
+    .img-overlay {
+      opacity: 1;
+    }
   }
 `
