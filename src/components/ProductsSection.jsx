@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { FaArrowDown } from 'react-icons/fa'
+import { images } from '../constants'
 
 const ProductsSection = ({ isVisible, onClose }) => (
   <Wrapper className={isVisible ? 'visible' : ''}>
@@ -18,7 +19,11 @@ const ProductsSection = ({ isVisible, onClose }) => (
         </button>
       </div>
     </div>
-    <div className='content'>Products will be shown here...</div>
+    <div className='content'>
+      {images.map((image) => (
+        <img src={image.image} alt={image.name} key={image.id} />
+      ))}
+    </div>
   </Wrapper>
 )
 
@@ -78,5 +83,24 @@ const Wrapper = styled.div`
     color: var(--grey-600);
     background-color: white;
     cursor: pointer;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 0 2rem;
+    margin-top: 80px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .content img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid var(--grey-400);
+    border-radius: 4px;
   }
 `

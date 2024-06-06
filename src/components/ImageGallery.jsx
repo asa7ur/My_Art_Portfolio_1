@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const ImageGallery = ({ images }) => {
-  const groupedImages = images.reduce((acc, image, index) => {
+  const groupedImages = images.slice(0, 18).reduce((acc, image, index) => {
     const colIndex = Math.floor(index / 6)
     if (!acc[colIndex]) acc[colIndex] = []
     acc[colIndex].push(image)
