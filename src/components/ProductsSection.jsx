@@ -6,7 +6,7 @@ import axios from 'axios'
 const ProductsSection = ({ isVisible, onClose }) => {
   const [images, setImages] = useState([])
 
-  const fecthImages = async () => {
+  const fetchImages = async () => {
     try {
       const response = await axios('/.netlify/functions/images')
       const fetchedImages = response.data
@@ -17,7 +17,7 @@ const ProductsSection = ({ isVisible, onClose }) => {
   }
 
   useEffect(() => {
-    fecthImages()
+    fetchImages()
   }, [])
 
   const chunkArray = (array, chunkSize) => {
@@ -60,22 +60,28 @@ const ProductsSection = ({ isVisible, onClose }) => {
       <div className='content'>
         {columns.map((column, index) => (
           <div className='col' key={index}>
-            {column.map((image) => (
-              <div className='img-container' key={image.id}>
-                <img src={image.image} alt={image.name} />
-                <div className='img-overlay'>
-                  <a
-                    href={image.store_link}
-                    target='_blank'
-                  >
-                    <FaShoppingCart className='logo' />
-                  </a>
-                  <a href={image.ig_link} target='_blank'>
-                    <FaInstagram className='logo' />
-                  </a>
+            {Array.isArray(column) &&
+              column.map((image) => (
+                <div className='img-container' key={image.id}>
+                  <img src={image.image} alt={image.name} />
+                  <div className='img-overlay'>
+                    <a
+                      href={image.store_link}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <FaShoppingCart className='logo' />
+                    </a>
+                    <a
+                      href={image.ig_link}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <FaInstagram className='logo' />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         ))}
       </div>
@@ -181,7 +187,7 @@ const Wrapper = styled.div`
     gap: 2rem;
   }
 
-  .img-container > .img-overlay > a{
+  .img-container > .img-overlay > a {
     color: white;
     font-size: 3rem;
   }
