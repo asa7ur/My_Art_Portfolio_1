@@ -28,16 +28,16 @@ const ProductsSection = ({ isVisible, onClose }) => {
     return result
   }
 
-  const calculateColumns = () => {
-    const screenWidth = window.innerWidth
-    if (screenWidth >= 1024) return 4
-    if (screenWidth >= 768) return 3
-    return 2
-  }
+  // const calculateColumns = () => {
+  //   const screenWidth = window.innerWidth
+  //   if (screenWidth >= 1024) return 4
+  //   if (screenWidth >= 768) return 3
+  //   return 2
+  // }
 
   const columns = chunkArray(
     images,
-    Math.ceil(images.length / calculateColumns())
+    Math.ceil(images.length / 4)
   )
 
   return (
@@ -92,11 +92,12 @@ const ProductsSection = ({ isVisible, onClose }) => {
 export default ProductsSection
 
 const Wrapper = styled.div`
+  transform: translate(5%);
   position: fixed;
   top: 100%;
-  left: 105%;
-  width: 100%;
-  height: 100%;
+  left: 100%;
+  width: 100vw;
+  height: 100vh;
   background: white;
   display: flex;
   justify-content: center;
